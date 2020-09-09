@@ -4,9 +4,10 @@ import cx from 'classnames';
 import CardItem from './CardItem';
 
 import styles from './Cards.module.css';
+import Spinner from './../Spinner/Spinner';
 
 const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
-  if (!confirmed) return 'Loading...';
+  if (!confirmed) return <Spinner />;
 
   const cardsData = [
     {
@@ -19,14 +20,14 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
     {
       title: 'Recovered',
       value: recovered.value,
-      lastUpdate,
+      date: lastUpdate,
       body: 'Number of recoveries from COVID-19',
       classes: cx(styles.card, styles.recovered),
     },
     {
       title: 'Deaths',
       value: deaths.value,
-      lastUpdate,
+      date: lastUpdate,
       body: 'Number of deaths caused by COVID-19',
       classes: cx(styles.card, styles.deaths),
     },
